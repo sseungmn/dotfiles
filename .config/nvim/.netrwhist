@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/Users/sseungmn'
+let g:netrw_dirhist_3='/Users/sseungmn/.oh-my-zsh'
+let g:netrw_dirhist_2='/Users/sseungmn'
+let g:netrw_dirhist_1='/Users/sseungmn/.tmux'
+let g:netrw_dirhist_0='/Users/sseungmn/.vim/plugged/vim-tmux-navigator'
+let g:netrw_dirhist_9='/Users/sseungmn/.vim/plugged'
+let g:netrw_dirhist_8='/Users/sseungmn/.vim/plugged/vim-tmux-navigator'
+let g:netrw_dirhist_7='/usr/local/Cellar/neovim/0.4.4/share/nvim/runtime/doc'
+let g:netrw_dirhist_6='/Users/sseungmn'
+let g:netrw_dirhist_5='/'
