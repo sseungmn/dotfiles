@@ -35,7 +35,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
   " format on enter, <cr> could be remmaped by other vim plugin
   inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                                   \: "<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-  
+
   " coc-snippets"
   let g:coc_snippet_next='<tab>'
   " GoTo code navigation
@@ -48,8 +48,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
   nmap <leader>rn <Plug>(coc-rename)
 
   " Formatting selected code
-  xmap <leader>f <Plug>(coc-format-selected)
-  nmap <leader>f <Plug>(coc-format-select)
+  "xmap <leader>f <Plug>(coc-format-selected)
+  "nmap <leader>f <Plug>(coc-format-select)
 
   " always show signcolumns
   set signcolumn=no
@@ -158,13 +158,14 @@ set tabstop=2 shiftwidth=2
 set backspace=indent,eol,start
 set foldmethod=marker
 
+set clipboard=unnamed
 
 " Give more space for displaying message.
 set cmdheight=2
 
 au BufNewFile,BufReadPost *.py set tabstop=4 shiftwidth=4
 au BufNewFile,BufReadPost *.py setlocal foldmethod=indent
-
+let g:python3_host_prog='~/.pyenv/versions/ws1_virtualenv/bin/python'
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 

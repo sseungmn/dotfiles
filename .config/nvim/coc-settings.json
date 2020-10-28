@@ -1,71 +1,18 @@
-{"languageserver": {
-  "python": {
-    "command": "python",
-    "args": [
-      "-mpyls",
-      "-vv",
-      "--log-file",
-      "/tmp/lsp_python.log"
-    ],
-    "trace.server": "verbose",
-    "filetypes": [
-      "python"
-    ],
-    "settings": {
-      "pyls": {
-        "enable": true,
-        "trace": {
-          "server": "verbose"
-        },
-        "commandPath": "",
-        "configurationSources": [
-          "pycodestyle"
-        ],
-        "plugins": {
-          "jedi_completion": {
-            "enabled": false
-          },
-          "jedi_hover": {
-            "enabled": false
-          },
-          "jedi_references": {
-            "enabled": true
-          },
-          "jedi_signature_help": {
-            "enabled": true
-          },
-          "jedi_symbols": {
-            "enabled": true,
-            "all_scopes": true
-          },
-          "mccabe": {
-            "enabled": true,
-            "threshold": 15
-          },
-          "preload": {
-            "enabled": true
-          },
-          "pycodestyle": {
-            "enabled": true
-          },
-          "pydocstyle": {
-            "enabled": true,
-            "match": "(?!test_).*\\.py",
-            "matchDir": "[^\\.].*"
-          },
-          "pyflakes": {
-            "enabled": false
-          },
-          "rope_completion": {
-            "enabled": true
-          },
-          "yapf": {
-            "enabled": true
-          }
-        }
-      }
-    }
-  }
+{
+  "diagnostic.errorSign": "✖",
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.infoSign": "ℹ",
+  "diagnostic.hintSign": "➤",
+  "suggest.noselect": false,
+  "suggest.echodocSupport": true,
+  "codeLens.enable": true,
+  "signature.enable": true,
+  "suggest.preferCompleteThanJumpPlaceholder": true,
+  "python.venvFolders": [
+    ".pyenv"
+  ],
+  "python.workspaceSymbols.exclusionPatterns": [],
+  "python.jediEnabled": false,
+  "python.linting.pylintEnabled": true,
+  "python.linting.pylintArgs": ["--load-plugins", "pylint_django"]
 }
-}
-
