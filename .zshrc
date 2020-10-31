@@ -48,3 +48,22 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden'
 
 # git repository for dotfiles
 alias config='/usr/bin/git --git-dir=/Users/sseungmn/.cfg/ --work-tree=/Users/sseungmn'
+
+# for codi.vim
+codi() {
+  local syntax="${1:-python}"
+  shift
+  vim -c \
+    "let g:startify_disable_at_vimenter = 1 |\
+     let g:codi#interpreters = {
+          \ 'python' : {
+              \ 'bin' : '~/.pyenv/versions/ws1_virtualenv/bin/python',
+              \ 'prompt': '^\(>>>\|\.\.\.\) '
+              \ }
+          \ }
+    set bt=nofile ls=0 noru nonu nornu |\
+    hi ColorColumn ctermbg=NONE |\
+    hi VertSplit ctermbg=NONE |\
+    hi NonText ctermfg=0 |\
+    Codi $syntax" "$@"
+}

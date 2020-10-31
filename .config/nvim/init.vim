@@ -74,6 +74,11 @@ Plug 'vim-airline/vim-airline-themes'
   set laststatus=2				                 " turn on bottom bar
 " }}}
 Plug 'Yggdroot/indentLine'
+Plug 'preservim/tagbar'
+"{{{
+  nmap <F8> :TagbarToggle<CR>
+  let g:tagbar_width = max([30, winwidth(0) / 5 ])
+"}}}
 
 Plug 'preservim/nerdcommenter'
 " {{{
@@ -96,18 +101,16 @@ Plug 'junegunn/fzf.vim'
     \ 'down': '20%'
     \ })
 
-  command! FZMru call fzf#run({
-    \ 'source': v:oldfiles,
-    \ 'sink': 'e',
-    \ 'option': '-m -x +s',
-    \ 'down': '20%'
-    \ })
-
   command! FZBuf call fzf#vim#buffers({
     \ 'sink': 'e',
     \ 'option': '-m -e -x +s',
     \ 'down': '15%'
     \ })
+"}}}
+Plug 'pbogut/fzf-mru.vim'
+"{{{
+  nnoremap <silent> <C-o> :FZFMru<CR> 
+  let g:fzf_mru_relative = 0
 "}}}
 
 Plug 'christoomey/vim-tmux-navigator'
@@ -117,6 +120,7 @@ Plug 'Blueyed/vim-diminactive'
 " }}}
 " working when using vim inside Tmux
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'metakirby5/codi.vim'
 
 Plug 'tpope/vim-fugitive'
 
@@ -172,6 +176,7 @@ set tabstop=2 shiftwidth=2
 set backspace=indent,eol,start
 set foldmethod=marker
 set splitright
+set splitbelow
 
 set clipboard=unnamed
 
@@ -182,5 +187,6 @@ au BufNewFile,BufReadPost *.py set tabstop=4 shiftwidth=4
 au BufNewFile,BufReadPost *.py setlocal foldmethod=indent
 autocmd FileType python map <buffer> <leader>e :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <leader>e :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+
 
 let g:python3_host_prog='~/.pyenv/versions/ws1_virtualenv/bin/python3.8'
