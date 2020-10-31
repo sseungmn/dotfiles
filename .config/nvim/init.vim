@@ -31,40 +31,38 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     inoremap <silent><expr> <c-@> coc#refresh()
   endif
 
-  " Make <CR> auto-select the first completion item and notify coc.nvim to
-  " format on enter, <cr> could be remmaped by other vim plugin
-  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                                  \: "<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  " Usr <CR> just to select current item"
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+  
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+" Use K to show documentation in preview window.
+  nnoremap <silent> K :call <SID>show_doc()<CR>
+
+  function! s:show_doc() 
+    if &filetype == 'vim'
+      execute 'h ' . expand('<cword>')
+    else
+      call CocAction('doHover')
+    endif
+  endfunction
 
   " coc-snippets"
   let g:coc_snippet_next='<tab>'
   " GoTo code navigation
-  nmap <silent> gd <Plug>(coc-definition)
-  nmap <silent> gy <Plug>(coc-type-definition)
-  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gd :call CocAction('jumpDefinition')<CR>
+  nmap <silent> gl :call CocAction('jumpDeclaration')<CR>
+  nmap <silent> gi :call CocAction('jumpImplemetation')<CR>
   nmap <silent> gr <Plug>(coc-references)
 
+  " Use `[g` and `]g` to navigate diagnostics
+  " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+  nmap <silent> dg :CocDiagnostics<CR>
+  nmap <silent> [g <Plug>(coc-diagnostic-prev)
+  nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
   " Symbol renaming
-  nmap <leader>rn <Plug>(coc-rename)
+  nmap <F2> <Plug>(coc-rename)
 
-  " Formatting selected code
-  "xmap <leader>f <Plug>(coc-format-selected)
-  "nmap <leader>f <Plug>(coc-format-select)
-
-  " always show signcolumns
-  set signcolumn=no
-" }}}
-
-Plug 'Nathanaelkane/vim-indent-guides'
-" {{{
-  "<Leader>ig : default mapping to toggle 
-  let g:indentguides_spacechar = '┆'
-  let g:indentguides_tabchar = '|'
-  let g:indent_guides_enable_on_vim_startup = 1
-  let g:indent_guides_start_level = 1
-  let g:indent_guides_guide_size = 2
-  au BufNewFile,BufReadPost *.py
-  \  let g:indent_guides_guide_size = 4
 " }}}
 
 Plug 'vim-airline/vim-airline'
@@ -75,6 +73,7 @@ Plug 'vim-airline/vim-airline-themes'
   let g:airline_theme='papercolor'
   set laststatus=2				                 " turn on bottom bar
 " }}}
+Plug 'Yggdroot/indentLine'
 
 Plug 'preservim/nerdcommenter'
 " {{{
@@ -165,7 +164,9 @@ set cmdheight=2
 
 au BufNewFile,BufReadPost *.py set tabstop=4 shiftwidth=4
 au BufNewFile,BufReadPost *.py setlocal foldmethod=indent
-let g:python3_host_prog='~/.pyenv/versions/ws1_virtualenv/bin/python'
+autocmd FileType python map <buffer> <leader>e :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <leader>e :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+let g:python3_host_prog='~/.pyenv/versions/ws1_virtualenv/bin/python3.8'
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 

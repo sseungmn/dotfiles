@@ -11,8 +11,14 @@
   "python.venvFolders": [
     ".pyenv"
   ],
-  "python.workspaceSymbols.exclusionPatterns": [],
+  "python.terminal.executeInFileDir": true,
   "python.jediEnabled": false,
   "python.linting.pylintEnabled": true,
-  "python.linting.pylintArgs": ["--load-plugins", "pylint_django"]
+  "python.linting.flake8Enabled": false,
+  "python.formatting.provider": "black",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "python"
+  ],
+  "coc.preferences.jumpCommand": "tab drop",
+  "diagnostic.checkCurrentLine": true
 }
