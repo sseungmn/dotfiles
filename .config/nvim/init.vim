@@ -118,7 +118,10 @@ Plug 'Blueyed/vim-diminactive'
 " working when using vim inside Tmux
 Plug 'tmux-plugins/vim-tmux-focus-events'
 
+Plug 'tpope/vim-fugitive'
+
 Plug 'morhetz/gruvbox'
+
 call plug#end()
 
 "------------------------------------------""
@@ -146,6 +149,18 @@ nnoremap <leader>bl :ls<CR>
 syntax enable
 filetype plugin indent on
 highlight Comment ctermfg=4
+
+"clear highlight after searching
+nnoremap <esc> :noh<return><ESC>
+
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
+nnoremap <silent> <leader>h :wincmd <<CR>
+nnoremap <silent> <leader>j :wincmd +<CR>
+nnoremap <silent> <leader>k :wincmd -<CR>
+nnoremap <silent> <leader>l :wincmd ><CR>
+
 set hidden
 set nobackup noswapfile
 
@@ -156,6 +171,7 @@ set cindent
 set tabstop=2 shiftwidth=2
 set backspace=indent,eol,start
 set foldmethod=marker
+set splitright
 
 set clipboard=unnamed
 
@@ -166,9 +182,5 @@ au BufNewFile,BufReadPost *.py set tabstop=4 shiftwidth=4
 au BufNewFile,BufReadPost *.py setlocal foldmethod=indent
 autocmd FileType python map <buffer> <leader>e :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <leader>e :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-let g:python3_host_prog='~/.pyenv/versions/ws1_virtualenv/bin/python3.8'
-noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
-noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
-"clear highlight after searching
-nnoremap <esc> :noh<return><ESC>
+let g:python3_host_prog='~/.pyenv/versions/ws1_virtualenv/bin/python3.8'
