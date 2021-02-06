@@ -4,14 +4,7 @@ source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighti
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins=(
-    git
-    zsh-syntax-highlighting
-    zsh-autosuggestions
-    fasd
-    pyenv
-    virtualenv
-)
+plugins=($plugins git zsh-syntax-highlighting zsh-autosuggestions fasd pyenv virtualenv)
 
 # --------------------alias------------------------
 alias zshconfig="vim ~/.zshrc"
@@ -26,6 +19,12 @@ export EDITOR=/usr/local/bin/nvim
 alias ntmux="tmux new -s session -n window"
 
 alias ws1="~/Documents/workspace/ws1"
+alias ws2="~/Documents/workspace/ws2"
+
+# git repository for dotfiles
+alias config='/usr/bin/git --git-dir=/Users/sseungmn/.cfg/ --work-tree=/Users/sseungmn'
+
+alias glog='git log --graph --decorate --oneline'
 #--------------------------------------------------
 
 # pyenv, virtualenv 설정
@@ -46,24 +45,4 @@ source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden'
 
-# git repository for dotfiles
-alias config='/usr/bin/git --git-dir=/Users/sseungmn/.cfg/ --work-tree=/Users/sseungmn'
 
-# for codi.vim
-codi() {
-  local syntax="${1:-python}"
-  shift
-  vim -c \
-    "let g:startify_disable_at_vimenter = 1 |\
-     let g:codi#interpreters = {
-          \ 'python' : {
-              \ 'bin' : '~/.pyenv/versions/ws1_virtualenv/bin/python',
-              \ 'prompt': '^\(>>>\|\.\.\.\) '
-              \ }
-          \ }
-    set bt=nofile ls=0 noru nonu nornu |\
-    hi ColorColumn ctermbg=NONE |\
-    hi VertSplit ctermbg=NONE |\
-    hi NonText ctermfg=0 |\
-    Codi $syntax" "$@"
-}
